@@ -47,7 +47,7 @@ const SearchScreen = () => {
         );
     };
 
-    const [searchText, setsearchText] = useState("");
+    const [searchText, setSearchText] = useState("");
     const DATA = data.artistList;
     let filteredData = [];
     if (DATA.length > 0) {
@@ -62,7 +62,7 @@ const SearchScreen = () => {
         <View>
             <SearchBar
                 searchText={searchText}
-                setsearchText={setsearchText}
+                setSearchText={setSearchText}
                 style={styles.SearchBar}
             />
             <FlatList

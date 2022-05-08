@@ -8,27 +8,19 @@ import { COLORS } from "../styles/theme/Colors";
 const SearchBar = ({ searchText, setSearchText, style }) => {
     return (
         <View style={style}>
-            <View
-                style={
-                    styles.searchContainer
-                }
-            >
-                {/* search Icon */}
+            <View style={styles.searchContainer}>
                 <Feather
                     name="search"
                     size={15}
                     color="black"
                     style={{ marginLeft: 1 }}
                 />
-                {/* Input field */}
                 <TextInput
                     style={styles.input}
                     placeholder="Search"
                     value={searchText}
                     onChangeText={setSearchText}
                 />
-                {/* cross Icon, depending on whether the search bar is clicked or not */}
-
                 <Entypo name="cross" size={15} color={!!searchText ? COLORS.black : 'transparent'} onPress={() => {
                     setSearchText("");
                     Keyboard.dismiss();

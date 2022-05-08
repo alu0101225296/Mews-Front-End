@@ -12,7 +12,7 @@ import { COLORS } from './src/styles/theme/Colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 
-import TabNavigator from './src/components/TabNavigator';
+import TabNavigator from './src/navigation/TabNavigator';
 // import DrawerNavigation from './src/components/DrawerNavigator';
 
 const YourApp = () => {

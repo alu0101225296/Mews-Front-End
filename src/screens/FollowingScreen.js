@@ -18,6 +18,7 @@ import UnfollowPopUp from '../components/UnfollowPopUp';
 import SearchBar from '../components/SearchBar';
 
 const FollowingScreen = () => {
+    const [searchText, setSearchText] = useState("");
     const [isModalVisible, setModalVisible] = useState(false);
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -37,7 +38,6 @@ const FollowingScreen = () => {
         );
     };
 
-    const [searchText, setsearchText] = useState("");
     const DATA = data.artistList;
 
     let filteredData = [];
@@ -48,6 +48,7 @@ const FollowingScreen = () => {
             })
             : DATA;
     }
+
     return (
         <View style={{ flex: 1 }}>
 
@@ -55,7 +56,7 @@ const FollowingScreen = () => {
                 <>
                     <SearchBar
                         searchText={searchText}
-                        setsearchText={setsearchText}
+                        setSearchText={setSearchText}
                         style={styles.SearchBar}
                     />
                     <FlatList
