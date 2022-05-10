@@ -17,7 +17,7 @@ import UnfollowPopUp from '../components/UnfollowPopUp';
 
 import SearchBar from '../components/SearchBar';
 
-const FollowingScreen = () => {
+const FollowingScreen = ({ navigation }) => {
     const [searchText, setSearchText] = useState("");
     const [isModalVisible, setModalVisible] = useState(false);
     const toggleModal = () => {
@@ -25,7 +25,7 @@ const FollowingScreen = () => {
     };
 
     const goToArtist = () => {
-        console.log("hola");
+        navigation.navigate('Artist');
     }
 
     const renderArtistItem = ({ item }) => {

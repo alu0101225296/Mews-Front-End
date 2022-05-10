@@ -12,17 +12,24 @@ import { COLORS } from './src/styles/theme/Colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 
+
 import TabNavigator from './src/navigation/TabNavigator';
 // import DrawerNavigation from './src/components/DrawerNavigator';
 
+import ArtistScreen from './src/screens/ArtistScreen';
+
 const YourApp = () => {
   return (
-    <SafeAreaView
+    <View
       style={styles.container}>
+      <StatusBar
+        barStyle='dark-content'
+        backgroundColor={COLORS.white}
+      />
       <NavigationContainer>
         <TabNavigator />
       </NavigationContainer>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -30,11 +37,10 @@ const YourApp = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
-    //paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, // padding on the top if its android
+    backgroundColor: COLORS.black,
   },
   simlpeText: {
-    color: 'black',
+    color: COLORS.black,
   }
 });
 

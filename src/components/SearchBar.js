@@ -10,18 +10,18 @@ const SearchBar = ({ searchText, setSearchText, style }) => {
         <View style={style}>
             <View style={styles.searchContainer}>
                 <Feather
-                    name="search"
+                    name='search'
                     size={15}
-                    color="black"
+                    color={COLORS.gray}
                     style={{ marginLeft: 1 }}
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder="Search"
+                    placeholder='Search'
                     value={searchText}
                     onChangeText={setSearchText}
                 />
-                <Entypo name="cross" size={15} color={!!searchText ? COLORS.black : 'transparent'} onPress={() => {
+                <Entypo name="cross" size={15} color={!!searchText ? COLORS.gray : 'transparent'} onPress={() => {
                     setSearchText("");
                     Keyboard.dismiss();
                 }} />

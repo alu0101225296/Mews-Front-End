@@ -34,12 +34,12 @@ const TabNavigation = () => {
                     headerStyle: {
                         //backgroundColor: COLORS.purple,
                     },
-                    headerLeft: () => (
-                        <Image
-                            source={{ uri: 'https://shoonia.github.io/1x1/favicon.png' }}
-                            style={{ width: 40, height: 40 }}
-                        />
-                    ),
+                    // headerLeft: () => (
+                    //     <Image
+                    //         source={{ uri: 'https://shoonia.github.io/1x1/favicon.png' }}
+                    //         style={{ width: 40, height: 40 }}
+                    //     />
+                    // ),
 
                     tabBarLabel: 'Following',
                     tabBarIcon: ({ color, size }) => (

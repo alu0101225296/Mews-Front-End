@@ -10,7 +10,7 @@ import React from 'react';
 import { ScrollView, Text, View, Button, Alert, StyleSheet } from 'react-native';
 import { COLORS } from '../styles/theme/Colors';
 
-const AboutScreen = () => {
+const AboutTheAppScreen = () => {
     const example = () => { return "ABOUT SCREEN"; }
     return (
         <View style={Style.mainStyle}>
@@ -40,4 +40,4 @@ const Style = {  // TODO: cambiar a stylesheet
     },
 };
 
-export default AboutScreen;
+export default AboutTheAppScreen;

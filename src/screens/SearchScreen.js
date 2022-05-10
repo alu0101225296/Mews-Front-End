@@ -49,14 +49,10 @@ const SearchScreen = () => {
 
     const [searchText, setSearchText] = useState("");
     const DATA = data.artistList;
-    let filteredData = [];
-    if (DATA.length > 0) {
-        filteredData = (!!searchText) ?
-            DATA.filter(artist => {
-                return artist.name.toLowerCase().includes(searchText.toLowerCase());
-            })
-            : DATA;
-    }
+
+    let filteredData = (!!searchText) ? DATA.filter(artist => {
+        return artist.name.toLowerCase().includes(searchText.toLowerCase());
+    }) : [];
 
     return (
         <View>
