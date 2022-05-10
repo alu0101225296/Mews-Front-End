@@ -16,14 +16,8 @@ const TabNavigation = () => {
                 tabBarActiveTintColor: COLORS.blue,
                 tabBarInactiveTintColor: COLORS.gray,
                 tabBarHideOnKeyboard: true,
-                headerTitleAlign: 'center',
-                headerTintColor: COLORS.main,
-                headerTitleStyle: {
-                    fontSize: 25,
-                    fontWeight: 'bold',
-                    color: COLORS.main,
-                },
                 tabBarShowLabel: false,
+                headerShown: false,
             }}
         >
             <Tab.Screen

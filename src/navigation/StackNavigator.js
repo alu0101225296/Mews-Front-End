@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
-
+import { COLORS } from "../styles/theme/Colors";
 import FollowingScreen from '../screens/FollowingScreen';
 import RecentScreen from '../screens/RecentScreen';
 import SearchScreen from '../screens/SearchScreen';
@@ -19,19 +19,33 @@ const Stack = createStackNavigator();
 //         </Stack.Navigator>
 //     );
 // }
-
+const HeaderStyle = {
+    headerShown: true,
+    headerTitleAlign: 'center',
+    headerTintColor: COLORS.main,
+    headerTitleStyle: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: COLORS.main,
+    },
+}
 const FollowingStackNavigator = () => {
     return (
-        <Stack.Navigator screenOptions={{ headerShown: true }}>
+        <Stack.Navigator screenOptions={HeaderStyle}>
             <Stack.Screen name="Following" component={FollowingScreen} />
-            <Stack.Screen name="Artist" component={ArtistScreen} />
+            <Stack.Screen name="Artist" component={ArtistScreen}
+                options={{
+                    headerTintColor: COLORS.white,
+                    headerTransparent: true,
+                    headerTitle: "",
+                }} />
         </Stack.Navigator>
     );
 }
 
 const RecentStackNavigator = () => {
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator screenOptions={HeaderStyle}>
             <Stack.Screen name="Recent" component={RecentScreen} />
         </Stack.Navigator>
     );
@@ -39,7 +53,7 @@ const RecentStackNavigator = () => {
 
 const SearchStackNavigator = () => {
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator screenOptions={HeaderStyle}>
             <Stack.Screen name="Search" component={SearchScreen} />
         </Stack.Navigator>
     );

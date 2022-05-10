@@ -17,8 +17,8 @@ import { FlatList } from 'react-native-gesture-handler';
 import * as data from '../utils/artist.json';
 import { COLORS } from '../styles/theme/Colors';
 
-const MIN_HEIGHT = StatusBar.currentHeight + 50;
-const MAX_HEIGHT = 200;
+const MIN_HEIGHT = StatusBar.currentHeight + 70;
+const MAX_HEIGHT = 180;
 
 const ArtistScreen = () => {
     const navTitleView = useRef(null);
@@ -67,12 +67,10 @@ const ArtistScreen = () => {
                     onBeginHidden={() => navTitleView.current.fadeInUp(200)}
                     onDisplay={() => navTitleView.current.fadeOut(100)}
                 >
-                    <Text style={styles.title}>
-                        <Text style={styles.name}>Artist TriggeringView</Text>
-                    </Text>
+
                 </TriggeringView>
-                <View style={{ backgroundColor: COLORS.main }}>
-                    <FlatList
+                <View style={{ backgroundColor: COLORS.gray }}>
+                    <FlatList  // TODO: CANT USE FLATLIST I GUESS
                         data={DATA}
                         renderItem={renderNewsItem}
                         keyExtractor={(item => item.name)}

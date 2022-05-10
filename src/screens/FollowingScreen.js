@@ -50,7 +50,7 @@ const FollowingScreen = ({ navigation }) => {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: COLORS.gray }}>
 
             {(DATA.length !== 0) ?
                 <>
