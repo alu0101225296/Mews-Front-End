@@ -8,12 +8,13 @@
 
 import React from 'react';
 import { useState } from 'react';
-import { FlatList, Text, StyleSheet, View, Button } from 'react-native';
+import { FlatList, Text, StyleSheet, View, Button, StatusBar } from 'react-native';
 import { COLORS } from '../styles/theme/Colors';
 
 import * as data from '../utils/artist.json';
 import FollowingArtistItem from '../components/FollowingArtistItem';
 import UnfollowPopUp from '../components/UnfollowPopUp';
+import FocusAwareStatusBar from '../components/FocusAwareStatusBar'
 
 import SearchBar from '../components/SearchBar';
 
@@ -51,7 +52,10 @@ const FollowingScreen = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: COLORS.gray }}>
-
+            <FocusAwareStatusBar
+                barStyle='dark-content'
+                backgroundColor={COLORS.white}
+            />
             {(DATA.length !== 0) ?
                 <>
                     <SearchBar

@@ -8,14 +8,14 @@
 import * as Animatable from 'react-native-animatable';
 import React from 'react';
 import { ScrollView, Text, TextInputBase, View, StatusBar, StyleSheet, Dimensions } from 'react-native';
-import ImageHeaderScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
+import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 import { Header } from '@react-navigation/stack';
 import { useRef } from 'react';
 import NewsItem from '../components/NewsItem';
 
-import { FlatList } from 'react-native-gesture-handler';
 import * as data from '../utils/artist.json';
 import { COLORS } from '../styles/theme/Colors';
+import FocusAwareStatusBar from '../components/FocusAwareStatusBar'
 
 const MIN_HEIGHT = StatusBar.currentHeight + 70;
 const MAX_HEIGHT = 180;
@@ -24,20 +24,13 @@ const ArtistScreen = () => {
     const navTitleView = useRef(null);
     const DATA = data.artistList;
 
-    const renderNewsItem = ({ item }) => {
-        return (
-            <NewsItem
-                artistData={item}
-            />
-        );
-    };
     return (
-        <View style={{ flex: 1 }}>
-            <StatusBar barStyle="light-content"
+        <View style={{ flex: 1, backgroundColor: COLORS.gray }}>
+            <FocusAwareStatusBar barStyle="light-content"
                 backgroundColor="transparent"
                 translucent={true}
             />
-            <ImageHeaderScrollView
+            <HeaderImageScrollView
                 maxHeight={MAX_HEIGHT}
                 minHeight={MIN_HEIGHT}
                 maxOverlayOpacity={0.8}
@@ -67,16 +60,14 @@ const ArtistScreen = () => {
                     onBeginHidden={() => navTitleView.current.fadeInUp(200)}
                     onDisplay={() => navTitleView.current.fadeOut(100)}
                 >
-
+                    {DATA.map((item) => <NewsItem
+                        artistData={item}
+                    />)}
                 </TriggeringView>
                 <View style={{ backgroundColor: COLORS.gray }}>
-                    <FlatList  // TODO: CANT USE FLATLIST I GUESS
-                        data={DATA}
-                        renderItem={renderNewsItem}
-                        keyExtractor={(item => item.name)}
-                    />
+
                 </View>
-            </ImageHeaderScrollView>
+            </HeaderImageScrollView>
         </View>
     );
 }

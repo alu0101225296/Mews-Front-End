@@ -7,14 +7,15 @@
  */
 
 import React from 'react';
-import { ScrollView, Text, FlatList, View, StyleSheet } from 'react-native';
+import { ScrollView, Text, FlatList, View, StyleSheet, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
 import { useState } from 'react';
 import * as data from '../utils/artist.json';
 import SearchArtistItem from '../components/SearchArtistItem';
-
+import { COLORS } from '../styles/theme/Colors';
+import FocusAwareStatusBar from '../components/FocusAwareStatusBar'
 
 const SearchScreen = () => {
 
@@ -56,6 +57,10 @@ const SearchScreen = () => {
 
     return (
         <View>
+            <FocusAwareStatusBar
+                barStyle='dark-content'
+                backgroundColor={COLORS.white}
+            />
             <SearchBar
                 searchText={searchText}
                 setSearchText={setSearchText}

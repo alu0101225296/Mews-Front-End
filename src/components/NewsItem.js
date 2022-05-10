@@ -19,14 +19,13 @@ const NewsItem = ({ artistData }) => {
 const styles = StyleSheet.create({
     item: {
         backgroundColor: COLORS.white,
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
         flexDirection: 'row',
         alignItems: 'center',
         //justifyContent: 'space-evenly',
-        borderRadius: 8,
-        height: 150
+        height: 150,
+        backgroundColor: COLORS.white,
+        borderBottomColor: COLORS.gray,
+        borderBottomWidth: 1
     },
 });
 
