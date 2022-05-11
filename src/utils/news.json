@@ -1,5 +1,5 @@
 {
-    "newsList": [
+    "Ed Sheeran": [
         {
             "time": "10/12/2022",
             "title": "Una fusión de éxitos se escucharon en el Grand Theater de Anaheim - La KW",
@@ -7,18 +7,35 @@
         },
         {
             "time": "10/12/2022",
-            "title": "Una fusión de éxitos se escucharon en el Grand Theater de Anaheim - La KW",
-            "desc": "Con su ultimo disco, la cantante dejó un sabor latino para escuchar en todo el mundo, con colaboraciones con artistas como Ed Sheeran y María ..."
+            "title": "Camila Cabello actuará en la Ceremonia de Apertura de la final de la UEFA Champions ...",
+            "desc": "Camila Cabello repite colaboración junto a Ed Sheeran para presentar Bam bam ... Camila Cabello, Ed Sheeran y Emeli Sandé entre los artistas del ..."
         },
         {
             "time": "10/12/2022",
-            "title": "Una fusión de éxitos se escucharon en el Grand Theater de Anaheim - La KW",
-            "desc": "Con su ultimo disco, la cantante dejó un sabor latino para escuchar en todo el mundo, con colaboraciones con artistas como Ed Sheeran y María ..."
+            "title": "LLEGA EN VIVO ALFOMBRA ROJA LIVE FROM E!: BILLBOARD MUSIC AWARDS A TRAVÉS ...",
+            "desc": "Lil Nas X, Taylor Swift, Dua Lipa, Ed Sheeran, BTS, Eagles, Genesis, Green Day, Harry Styles, The Rolling Stones, Silk Sonic y Doja Cat."
+        }
+    ],
+    "Bad Bunny": [
+        {
+            "time": "08/05/2022",
+            "title": "Bad Bunny y Grupo Firme, más parecidos de lo que crees - El Universal",
+            "desc": "Checa Ambos han dominado dentro de su género musical, reggaetón y regional mexicana, respectivamente; contabilizan cada vez más adeptos teniendo ..."
         },
         {
-            "time": "10/12/2022",
+            "time": "07/05/2022",
             "title": "Una fusión de éxitos se escucharon en el Grand Theater de Anaheim - La KW",
-            "desc": "Con su ultimo disco, la cantante dejó un sabor latino para escuchar en todo el mundo, con colaboraciones con artistas como Ed Sheeran y María ..."
+            "desc": "El 'Conejo Malo' sigue haciendo historia en el streaming e incluso superó al propio Drake. Imagen principal. Bad Bunny. Por José Campillay."
+        },
+        {
+            "time": "14/06/2022",
+            "title": "¿De qué habla Andrea de Bad Bunny? Esta es la trágica historia que dio origen a la canción",
+            "desc": "No ha pasado ni una semana desde que Bad Bunny estrenó su esperado nuevo álbum, Un Verano Sin Ti, y ya es todo un éxito por sus melodías ..."
+        },
+        {
+            "time": "23/04/2022",
+            "title": "Bad Bunny visita a Checo Pérez previo a la carrera del Gran Premio de Miami | Marca",
+            "desc": "La foto que no sabíamos que necesitábamos. El encuentro de dos grandes. Un dúo que rompe con las redes sociales. Así es, Bad Bunny, el Conejo Malo ..."
         }
     ]
 }
