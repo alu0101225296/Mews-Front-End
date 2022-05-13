@@ -21,6 +21,7 @@ const SearchBar = ({ searchText, setSearchText, style }) => {
           placeholder="Search"
           value={searchText}
           onChangeText={setSearchText}
+          color={Theme.colors.gray}
         />
         <Entypo
           name="cross"
@@ -43,8 +44,8 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     flexDirection: 'row',
     width: '100%',
-    backgroundColor: '#d9dbda',
-    borderRadius: Theme.borderRadius.small,
+    backgroundColor: Theme.colors.white,
+    borderRadius: Theme.borderRadius.medium,
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
     width: '85%',
+    color: Theme.colors.grayDark,
   },
 });
 

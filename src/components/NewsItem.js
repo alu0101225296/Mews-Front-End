@@ -9,8 +9,8 @@ const NewsItem = ({ newsData }) => {
       <View>
         <Text style={styles.titleText}>{newsData.title}</Text>
       </View>
-      <Text>{newsData.desc}</Text>
-      <Text>{newsData.time}</Text>
+      <Text style={styles.descText}>{newsData.desc}</Text>
+      <Text style={styles.timeText}>{newsData.time}</Text>
     </View>
   );
 };
@@ -31,6 +31,14 @@ const styles = StyleSheet.create({
     fontSize: Theme.fonts.size.medium,
     fontWeight: 'bold',
     color: Theme.colors.black,
+  },
+  descText: {
+    fontSize: Theme.fonts.size.small,
+    color: Theme.colors.black,
+  },
+  timeText: {
+    fontSize: Theme.fonts.size.small,
+    color: Theme.colors.gray,
   },
 });
 

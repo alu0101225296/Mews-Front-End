@@ -22,7 +22,6 @@ import { useState } from 'react';
 import * as data from '../utils/artist.json';
 import ArtistItem from '../components/ArtistItem';
 import { Theme } from '../styles/theme/ThemeStyle';
-import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 import { Button } from 'react-native-vector-icons/Feather';
 
 const SearchScreen = ({ navigation }) => {
@@ -71,10 +70,7 @@ const SearchScreen = ({ navigation }) => {
 
   return (
     <View>
-      <FocusAwareStatusBar
-        barStyle="dark-content"
-        backgroundColor={Theme.colors.white}
-      />
+      <StatusBar barStyle="dark-content" />
       <SearchBar
         searchText={searchText}
         setSearchText={setSearchText}

@@ -20,7 +20,11 @@ import ArtistScreen from './src/screens/ArtistScreen';
 const YourApp = () => {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor={Theme.colors.white} />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={Theme.colors.white}
+        translucent={true}
+      />
       <NavigationContainer>
         <TabNavigator />
       </NavigationContainer>

@@ -23,9 +23,8 @@ import NewsItem from '../components/NewsItem';
 
 import * as data from '../utils/news.json';
 import { Theme } from '../styles/theme/ThemeStyle';
-import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 
-const MIN_HEIGHT = StatusBar.currentHeight + 70;
+const MIN_HEIGHT = StatusBar.currentHeight + 50;
 const MAX_HEIGHT = 180;
 
 const ArtistScreen = ({ route }) => {
@@ -35,11 +34,7 @@ const ArtistScreen = ({ route }) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: Theme.colors.gray }}>
-      <FocusAwareStatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent={true}
-      />
+      <StatusBar barStyle="light-content" backgroundColor="transparent" />
       <HeaderImageScrollView
         maxHeight={MAX_HEIGHT}
         minHeight={MIN_HEIGHT}

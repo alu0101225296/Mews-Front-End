@@ -37,8 +37,10 @@ const FollowingStackNavigator = () => {
         component={ArtistScreen}
         options={{
           headerTintColor: Theme.colors.white,
-          headerTransparent: true,
           headerTitle: '',
+          headerBackTitleVisible: false,
+          headerTransparent: true,
+          headerShown: true,
         }}
       />
     </Stack.Navigator>

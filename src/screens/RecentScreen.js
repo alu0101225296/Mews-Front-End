@@ -17,7 +17,6 @@ import {
   StatusBar,
 } from 'react-native';
 import { Theme } from '../styles/theme/ThemeStyle';
-import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 import * as data from '../utils/news.json';
 import NewsItem from '../components/NewsItem';
 import { FlatList } from 'react-native-gesture-handler';
@@ -31,10 +30,7 @@ const RecentScreen = () => {
 
   return (
     <View style={Style.mainStyle}>
-      <FocusAwareStatusBar
-        barStyle="dark-content"
-        backgroundColor={Theme.colors.white}
-      />
+      <StatusBar barStyle="dark-content" />
       <FlatList data={DATA} renderItem={renderNewsItem} />
     </View>
   );

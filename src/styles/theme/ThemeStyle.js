@@ -6,6 +6,7 @@ export const Theme = {
     purple: '#EACCF0',
     red: '#FF0000',
     gray: '#9E9E9E',
+    grayDark: '#757575',
   },
   fonts: {
     main: 'Roboto',
@@ -28,8 +29,8 @@ export const Theme = {
     },
   },
   borderRadius: {
-    small: 3,
-    medium: 5,
-    large: 8,
+    small: 4,
+    medium: 8,
+    large: 12,
   },
 };

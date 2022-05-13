@@ -21,8 +21,6 @@ import { Theme } from '../styles/theme/ThemeStyle';
 import * as data from '../utils/artist.json';
 import ArtistItem from '../components/ArtistItem';
 import UnfollowPopUp from '../components/UnfollowPopUp';
-import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
-
 import SearchBar from '../components/SearchBar';
 
 const FollowingScreen = ({ navigation }) => {
@@ -61,10 +59,7 @@ const FollowingScreen = ({ navigation }) => {
   }
   return (
     <View style={{ flex: 1, backgroundColor: Theme.colors.gray }}>
-      <FocusAwareStatusBar
-        barStyle="dark-content"
-        backgroundColor={Theme.colors.white}
-      />
+      <StatusBar barStyle="dark-content" />
       {DATA.length !== 0 ? (
         <>
           <SearchBar
