@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
-import { COLORS } from '../styles/theme/Colors';
+import { Theme } from '../styles/theme/ThemeStyle';
 
 const UnfollowPopUp = ({ isModalVisible, toggleModal }) => {
   return (
@@ -11,13 +11,13 @@ const UnfollowPopUp = ({ isModalVisible, toggleModal }) => {
       onBackdropPress={toggleModal}>
       <View
         style={{
-          backgroundColor: COLORS.white,
+          backgroundColor: Theme.colors.white,
         }}>
         <Text>Wanna unfollow?</Text>
         <View
           style={{
             flexDirection: 'row',
-            backgroundColor: COLORS.black,
+            backgroundColor: Theme.colors.black,
           }}>
           <Button title="YES" onPress={toggleModal} />
           <Button title="NO" onPress={toggleModal} />

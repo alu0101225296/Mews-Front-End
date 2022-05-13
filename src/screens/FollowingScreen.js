@@ -16,10 +16,10 @@ import {
   Button,
   StatusBar,
 } from 'react-native';
-import { COLORS } from '../styles/theme/Colors';
+import { Theme } from '../styles/theme/ThemeStyle';
 
 import * as data from '../utils/artist.json';
-import FollowingArtistItem from '../components/FollowingArtistItem';
+import ArtistItem from '../components/ArtistItem';
 import UnfollowPopUp from '../components/UnfollowPopUp';
 import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 
@@ -32,21 +32,24 @@ const FollowingScreen = ({ navigation }) => {
     setModalVisible(!isModalVisible);
   };
 
-  const goToArtist = () => {
-    navigation.navigate('Artist');
+  const goToArtist = artist => {
+    navigation.navigate('Artist', { artist });
   };
 
   const renderArtistItem = ({ item }) => {
     return (
-      <FollowingArtistItem
+      <ArtistItem
         artistData={item}
         cancelFollowHandler={toggleModal}
         pressArtistHandler={goToArtist}
+        isFollowing={item.follow}
       />
     );
   };
 
-  const DATA = data.artistList;
+  const DATA = data.artistList.filter(item => {
+    return item.follow;
+  });
 
   let filteredData = [];
   if (DATA.length > 0) {
@@ -56,12 +59,11 @@ const FollowingScreen = ({ navigation }) => {
         })
       : DATA;
   }
-
   return (
-    <View style={{ flex: 1, backgroundColor: COLORS.gray }}>
+    <View style={{ flex: 1, backgroundColor: Theme.colors.gray }}>
       <FocusAwareStatusBar
         barStyle="dark-content"
-        backgroundColor={COLORS.white}
+        backgroundColor={Theme.colors.white}
       />
       {DATA.length !== 0 ? (
         <>

@@ -16,34 +16,26 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
-import { COLORS } from '../styles/theme/Colors';
+import { Theme } from '../styles/theme/ThemeStyle';
 import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
+import * as data from '../utils/news.json';
+import NewsItem from '../components/NewsItem';
+import { FlatList } from 'react-native-gesture-handler';
 
 const RecentScreen = () => {
-  const example = () => {
-    return 'texto de prueba';
+  let DATA = data['Bad Bunny'];
+
+  const renderNewsItem = ({ item }) => {
+    return <NewsItem newsData={item} />;
   };
+
   return (
     <View style={Style.mainStyle}>
       <FocusAwareStatusBar
         barStyle="dark-content"
-        backgroundColor={COLORS.white}
+        backgroundColor={Theme.colors.white}
       />
-
-      <Text>Try editing me!</Text>
-      <Button
-        color="purple"
-        title="testing button"
-        onPress={() =>
-          Alert.alert('MyTitle', 'MyMessage', [
-            { text: 'Ye', onPress: () => console.log('yes') },
-            { text: 'Nope', onPress: () => console.log('no') },
-          ])
-        }
-      />
-      <ScrollView>
-        <Text>Introduce {example()}</Text>
-      </ScrollView>
+      <FlatList data={DATA} renderItem={renderNewsItem} />
     </View>
   );
 };

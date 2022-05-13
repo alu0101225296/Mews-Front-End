@@ -3,42 +3,62 @@
         {
             "name": "Artist1",
             "image": "https://shoonia.github.io/1x1/favicon.png",
+            "follow": false
         },
         {
             "name": "Artist2",
             "image": "https://shoonia.github.io/1x1/favicon.png",
+            "follow": false
         },
         {
             "name": "Artist3",
             "image": "https://shoonia.github.io/1x1/favicon.png",
+            "follow": false
         },
         {
             "name": "Artist4",
             "image": "https://shoonia.github.io/1x1/favicon.png",
+            "follow": false
         },
         {
             "name": "Artist5",
             "image": "https://shoonia.github.io/1x1/favicon.png",
+            "follow": false
         },
         {
             "name": "Artist6",
             "image ": "https://shoonia.github.io/1x1/favicon.png",
+            "follow": false
         },
         {
             "name": "Artist7",
             "image": "https://shoonia.github.io/1x1/favicon.png",
+            "follow": false
         },
         {
             "name": "Artist8",
             "image": "https://shoonia.github.io/1x1/favicon.png",
+            "follow": false
         },
         {
             "name": "Artist9",
             "image": "https://shoonia.github.io/1x1/favicon.png",
+            "follow": false
         },
         {
             "name": "Artist10",
             "image": "https://shoonia.github.io/1x1/favicon.png",
+            "follow": false
+        },
+        {
+            "name": "Ed Sheeran",
+            "image": "https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6",
+            "follow": true
+        },
+        {
+            "name": "Bad Bunny",
+            "image": "https://images2.listindiario.com/imagen/2020/05/16/618/617747/680x460/202005161424071/safaera-de-bad-bunny-vuelve-a-estar-disponible-en-spotify.jpeg",
+            "follow": true
         }
     ]
 }

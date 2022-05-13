@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { COLORS } from '../styles/theme/Colors';
+import { Theme } from '../styles/theme/ThemeStyle';
 import {
   FollowingStackNavigator,
   RecentStackNavigator,
@@ -15,8 +15,8 @@ const TabNavigation = () => {
     <Tab.Navigator
       initialRouteName="RecentTab"
       screenOptions={{
-        tabBarActiveTintColor: COLORS.blue,
-        tabBarInactiveTintColor: COLORS.gray,
+        tabBarActiveTintColor: Theme.colors.blue,
+        tabBarInactiveTintColor: Theme.colors.gray,
         tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
         headerShown: false,
@@ -27,7 +27,7 @@ const TabNavigation = () => {
         options={{
           title: 'Following',
           headerStyle: {
-            //backgroundColor: COLORS.purple,
+            //backgroundColor: Theme.colors.purple,
           },
           // headerLeft: () => (
           //     <Image

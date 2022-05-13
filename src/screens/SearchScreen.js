@@ -20,8 +20,8 @@ import { useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
 import { useState } from 'react';
 import * as data from '../utils/artist.json';
-import SearchArtistItem from '../components/SearchArtistItem';
-import { COLORS } from '../styles/theme/Colors';
+import ArtistItem from '../components/ArtistItem';
+import { Theme } from '../styles/theme/ThemeStyle';
 import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 import { Button } from 'react-native-vector-icons/Feather';
 
@@ -51,10 +51,11 @@ const SearchScreen = ({ navigation }) => {
 
   const renderArtistItem = ({ item }) => {
     return (
-      <SearchArtistItem
+      <ArtistItem
         artistData={item}
         cancelFollowHandler={toggleModal}
         pressArtistHandler={goToArtist}
+        isFollowing={item.follow}
       />
     );
   };
@@ -72,7 +73,7 @@ const SearchScreen = ({ navigation }) => {
     <View>
       <FocusAwareStatusBar
         barStyle="dark-content"
-        backgroundColor={COLORS.white}
+        backgroundColor={Theme.colors.white}
       />
       <SearchBar
         searchText={searchText}

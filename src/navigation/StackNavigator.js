@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { COLORS } from '../styles/theme/Colors';
+import { Theme } from '../styles/theme/ThemeStyle';
 import FollowingScreen from '../screens/FollowingScreen';
 import RecentScreen from '../screens/RecentScreen';
 import SearchScreen from '../screens/SearchScreen';
@@ -21,11 +21,11 @@ const Stack = createStackNavigator();
 const HeaderStyle = {
   headerShown: true,
   headerTitleAlign: 'center',
-  headerTintColor: COLORS.main,
+  headerTintColor: Theme.colors.main,
   headerTitleStyle: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: COLORS.main,
+    color: Theme.colors.main,
   },
 };
 const FollowingStackNavigator = () => {
@@ -36,7 +36,7 @@ const FollowingStackNavigator = () => {
         name="Artist"
         component={ArtistScreen}
         options={{
-          headerTintColor: COLORS.white,
+          headerTintColor: Theme.colors.white,
           headerTransparent: true,
           headerTitle: '',
         }}

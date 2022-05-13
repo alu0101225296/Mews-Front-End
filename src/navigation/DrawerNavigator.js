@@ -1,11 +1,16 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
 
-import { AboutTheAppStackNavigator } from './StackNavigator';
+import {
+  FollowingStackNavigator,
+  RecentStackNavigator,
+  SearchStackNavigator,
+  AboutTheAppStackNavigator,
+} from './StackNavigator';
 
 const Drawer = createDrawerNavigator();
 
-function MyDrawer() {
+function DrawerNavigator() {
   return (
     <Drawer.Navigator initialRouteName="Recent">
       <Drawer.Screen
@@ -16,4 +21,4 @@ function MyDrawer() {
     </Drawer.Navigator>
   );
 }
-export default MyDrawer;
+export default DrawerNavigator;

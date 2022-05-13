@@ -8,9 +8,8 @@
 import * as Animatable from 'react-native-animatable';
 import React from 'react';
 import {
-  ScrollView,
   Text,
-  TextInputBase,
+  Image,
   View,
   StatusBar,
   StyleSheet,
@@ -19,23 +18,23 @@ import {
 import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
-import { Header } from '@react-navigation/stack';
 import { useRef } from 'react';
 import NewsItem from '../components/NewsItem';
 
-import * as data from '../utils/artist.json';
-import { COLORS } from '../styles/theme/Colors';
+import * as data from '../utils/news.json';
+import { Theme } from '../styles/theme/ThemeStyle';
 import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 
 const MIN_HEIGHT = StatusBar.currentHeight + 70;
 const MAX_HEIGHT = 180;
 
-const ArtistScreen = () => {
+const ArtistScreen = ({ route }) => {
   const navTitleView = useRef(null);
-  const DATA = data.artistList;
+  const artistData = route.params.artist;
+  const DATA = data[artistData.name]; // news data
 
   return (
-    <View style={{ flex: 1, backgroundColor: COLORS.gray }}>
+    <View style={{ flex: 1, backgroundColor: Theme.colors.gray }}>
       <FocusAwareStatusBar
         barStyle="light-content"
         backgroundColor="transparent"
@@ -47,15 +46,23 @@ const ArtistScreen = () => {
         maxOverlayOpacity={0.8}
         minOverlayOpacity={0.4}
         fadeOutForeground
-        headerImage={require('../assets/images/edsheeran.jpeg')}
+        renderHeader={() => (
+          <Image
+            source={{ uri: artistData.image }}
+            style={{
+              height: MAX_HEIGHT,
+              width: Dimensions.get('window').width,
+            }}
+          />
+        )}
         renderForeground={() => (
           <View style={styles.titleContainer}>
-            <Text style={styles.imageTitle}>Ed Sheeran</Text>
+            <Text style={styles.imageTitle}>{artistData.name}</Text>
           </View>
         )}
         renderFixedForeground={() => (
           <Animatable.View style={styles.navTitleView} ref={navTitleView}>
-            <Text style={styles.navTitle}>Ed Sheeran</Text>
+            <Text style={styles.navTitle}>{artistData.name}</Text>
           </Animatable.View>
         )}>
         <TriggeringView
@@ -63,10 +70,10 @@ const ArtistScreen = () => {
           onBeginHidden={() => navTitleView.current.fadeInUp(200)}
           onDisplay={() => navTitleView.current.fadeOut(100)}>
           {DATA.map(item => (
-            <NewsItem artistData={item} />
+            <NewsItem newsData={item} />
           ))}
         </TriggeringView>
-        <View style={{ backgroundColor: COLORS.gray }}></View>
+        <View style={{ backgroundColor: Theme.colors.gray }}></View>
       </HeaderImageScrollView>
     </View>
   );
@@ -87,7 +94,7 @@ const styles = StyleSheet.create({
   },
   section: {
     padding: 0,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0,
     borderBottomColor: '#cccccc',
     backgroundColor: 'white',
   },

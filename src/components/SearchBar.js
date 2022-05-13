@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, TextInput, View, Keyboard, Button } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { COLORS } from '../styles/theme/Colors';
+import { Theme } from '../styles/theme/ThemeStyle';
 
 // TODO: NO  PASARLE EL ESTILO, DECLARARLO EN SU CONTENEDOR QUE LO LLAMA
 const SearchBar = ({ searchText, setSearchText, style }) => {
@@ -13,7 +13,7 @@ const SearchBar = ({ searchText, setSearchText, style }) => {
         <Feather
           name="search"
           size={15}
-          color={COLORS.gray}
+          color={Theme.colors.gray}
           style={{ marginLeft: 1 }}
         />
         <TextInput
@@ -25,7 +25,7 @@ const SearchBar = ({ searchText, setSearchText, style }) => {
         <Entypo
           name="cross"
           size={15}
-          color={!!searchText ? COLORS.gray : 'transparent'}
+          color={!!searchText ? Theme.colors.gray : 'transparent'}
           onPress={() => {
             setSearchText('');
             Keyboard.dismiss();
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     backgroundColor: '#d9dbda',
-    borderRadius: 8,
+    borderRadius: Theme.borderRadius.small,
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },

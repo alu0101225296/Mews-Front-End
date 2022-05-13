@@ -15,7 +15,7 @@ import {
   Alert,
   StyleSheet,
 } from 'react-native';
-import { COLORS } from '../styles/theme/Colors';
+import { Theme } from '../styles/theme/ThemeStyle';
 
 const AboutTheAppScreen = () => {
   const example = () => {
