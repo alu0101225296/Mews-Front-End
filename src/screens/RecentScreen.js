@@ -18,14 +18,14 @@ import {
 } from 'react-native';
 import { Theme } from '../styles/theme/ThemeStyle';
 import * as data from '../utils/news.json';
-import NewsItem from '../components/NewsItem';
+import RecentNewsItem from '../components/RecentNewsITem';
 import { FlatList } from 'react-native-gesture-handler';
 
 const RecentScreen = () => {
   let DATA = data['Bad Bunny'];
 
   const renderNewsItem = ({ item }) => {
-    return <NewsItem newsData={item} />;
+    return <RecentNewsItem newsData={item} />;
   };
 
   return (

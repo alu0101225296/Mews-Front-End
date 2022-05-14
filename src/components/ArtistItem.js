@@ -1,7 +1,17 @@
 import React from 'react';
-import { Text, StyleSheet, View, Image, Pressable } from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  Pressable,
+  Button,
+  Alert,
+} from 'react-native';
 import { Theme } from '../styles/theme/ThemeStyle';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+// import MaterialCommunityIcons, {
+//   Button,
+// } from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ArtistItem = ({
   artistData,
@@ -15,21 +25,28 @@ const ArtistItem = ({
         <Image source={{ uri: artistData.image }} style={styles.image} />
         <View style={styles.rightSide}>
           <Text style={styles.artistNameText}>{artistData.name}</Text>
-          <Pressable onPress={cancelFollowHandler}>
-            {isFollowing ? (
-              <MaterialCommunityIcons
-                name="close-circle"
-                color={Theme.colors.red}
-                size={20}
-              />
-            ) : (
-              <MaterialCommunityIcons
-                name="plus-circle"
-                color={Theme.colors.red}
-                size={20}
-              />
-            )}
-          </Pressable>
+          {isFollowing ? (
+            <Button
+              title="Unfollow"
+              color={Theme.colors.red}
+              onPress={() =>
+                Alert.alert(
+                  'Unfollow',
+                  'Do you want to unfollow ' + artistData.name + '?',
+                  [
+                    { text: 'No' },
+                    { text: 'Yes', onPress: () => cancelFollowHandler },
+                  ],
+                )
+              }
+            />
+          ) : (
+            <Button
+              title="Follow"
+              color={Theme.colors.red}
+              onPress={() => ''}
+            />
+          )}
         </View>
       </View>
     </Pressable>

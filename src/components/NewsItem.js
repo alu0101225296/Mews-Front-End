@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, View, Image, Pressable } from 'react-native';
 import { Theme } from '../styles/theme/ThemeStyle';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const NewsItem = ({ newsData }) => {
   return (

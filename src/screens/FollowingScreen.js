@@ -31,7 +31,7 @@ const FollowingScreen = ({ navigation }) => {
   };
 
   const goToArtist = artist => {
-    navigation.navigate('Artist', { artist });
+    navigation.navigate('ArtistFollowing', { artist });
   };
 
   const renderArtistItem = ({ item }) => {
@@ -58,7 +58,7 @@ const FollowingScreen = ({ navigation }) => {
       : DATA;
   }
   return (
-    <View style={{ flex: 1, backgroundColor: Theme.colors.gray }}>
+    <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       {DATA.length !== 0 ? (
         <>
@@ -85,6 +85,10 @@ const FollowingScreen = ({ navigation }) => {
 };
 //
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Theme.colors.backgroundColor,
+  },
   emptyList: {
     flex: 1,
     fontSize: 20,

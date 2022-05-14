@@ -35,7 +35,7 @@ const YourApp = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.colors.gray,
+    backgroundColor: Theme.colors.backgroundColor,
   },
   simlpeText: {
     color: Theme.colors.black,

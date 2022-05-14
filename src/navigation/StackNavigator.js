@@ -33,7 +33,7 @@ const FollowingStackNavigator = () => {
     <Stack.Navigator screenOptions={HeaderStyle}>
       <Stack.Screen name="Following" component={FollowingScreen} />
       <Stack.Screen
-        name="Artist"
+        name="ArtistFollowing"
         component={ArtistScreen}
         options={{
           headerTintColor: Theme.colors.white,
@@ -59,6 +59,17 @@ const SearchStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={HeaderStyle}>
       <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen
+        name="ArtistSearching"
+        component={ArtistScreen}
+        options={{
+          headerTintColor: Theme.colors.white,
+          headerTitle: '',
+          headerBackTitleVisible: false,
+          headerTransparent: true,
+          headerShown: true,
+        }}
+      />
     </Stack.Navigator>
   );
 };

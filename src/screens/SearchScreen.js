@@ -29,23 +29,13 @@ const SearchScreen = ({ navigation }) => {
     navigation.setOptions({ headerShown: false });
   };
 
-  // const navigation = useNavigation();
-
-  // useEffect(() => {
-  //     navigation.setOptions({
-  //         headerRight: () => {
-  //             <SearchBar />
-  //         },
-  //     });
-  // }, [navigation]);
-
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const goToArtist = () => {
-    console.log('hola');
+  const goToArtist = artist => {
+    navigation.navigate('ArtistSearching', { artist });
   };
 
   const renderArtistItem = ({ item }) => {

@@ -5,7 +5,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { Theme } from '../styles/theme/ThemeStyle';
 
-// TODO: NO  PASARLE EL ESTILO, DECLARARLO EN SU CONTENEDOR QUE LO LLAMA
 const SearchBar = ({ searchText, setSearchText, style }) => {
   return (
     <View style={style}>
