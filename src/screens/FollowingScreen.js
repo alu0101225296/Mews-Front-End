@@ -22,6 +22,7 @@ import * as data from '../utils/artist.json';
 import ArtistItem from '../components/ArtistItem';
 import UnfollowPopUp from '../components/UnfollowPopUp';
 import SearchBar from '../components/SearchBar';
+import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 
 const FollowingScreen = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
@@ -59,7 +60,7 @@ const FollowingScreen = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
+      <FocusAwareStatusBar barStyle="dark-content" />
       {DATA.length !== 0 ? (
         <>
           <SearchBar

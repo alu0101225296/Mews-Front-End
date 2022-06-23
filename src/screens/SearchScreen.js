@@ -23,6 +23,7 @@ import * as data from '../utils/artist.json';
 import ArtistItem from '../components/ArtistItem';
 import { Theme } from '../styles/theme/ThemeStyle';
 import { Button } from 'react-native-vector-icons/Feather';
+import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 
 const SearchScreen = ({ navigation }) => {
   const hideHeader = () => {
@@ -60,7 +61,7 @@ const SearchScreen = ({ navigation }) => {
 
   return (
     <View>
-      <StatusBar barStyle="dark-content" />
+      <FocusAwareStatusBar barStyle="dark-content" />
       <SearchBar
         searchText={searchText}
         setSearchText={setSearchText}

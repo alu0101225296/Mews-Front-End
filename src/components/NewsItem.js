@@ -1,16 +1,23 @@
 import React from 'react';
 import { Text, StyleSheet, View, Image, Pressable } from 'react-native';
 import { Theme } from '../styles/theme/ThemeStyle';
+import { useNavigation } from '@react-navigation/native';
 
 const NewsItem = ({ newsData }) => {
+  const navigation = useNavigation();
+  const url = newsData.url;
   return (
-    <View style={styles.item}>
+    <Pressable
+      style={styles.item}
+      onPress={() => {
+        navigation.navigate('WebViewFollowing', { url: url });
+      }}>
       <View>
         <Text style={styles.titleText}>{newsData.title}</Text>
       </View>
       <Text style={styles.descText}>{newsData.desc}</Text>
       <Text style={styles.timeText}>{newsData.time}</Text>
-    </View>
+    </Pressable>
   );
 };
 

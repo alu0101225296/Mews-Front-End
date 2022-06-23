@@ -20,6 +20,7 @@ import { Theme } from '../styles/theme/ThemeStyle';
 import * as data from '../utils/news.json';
 import RecentNewsItem from '../components/RecentNewsITem';
 import { FlatList } from 'react-native-gesture-handler';
+import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 
 const RecentScreen = () => {
   let DATA = data['Bad Bunny'];
@@ -30,7 +31,7 @@ const RecentScreen = () => {
 
   return (
     <View style={Style.mainStyle}>
-      <StatusBar barStyle="dark-content" />
+      <FocusAwareStatusBar barStyle="dark-content" />
       <FlatList data={DATA} renderItem={renderNewsItem} />
     </View>
   );

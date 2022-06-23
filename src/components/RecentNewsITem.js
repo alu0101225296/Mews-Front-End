@@ -1,11 +1,18 @@
 import React from 'react';
 import { Text, StyleSheet, View, Image, Pressable } from 'react-native';
 import { Theme } from '../styles/theme/ThemeStyle';
+import { useNavigation } from '@react-navigation/native';
 
 // TODO : añadir newsItem y encima una cabecera en vez de crearlo todo entero aqui
 const RecentNewsItem = ({ newsData }) => {
+  const navigation = useNavigation();
+  const url = newsData.url;
   return (
-    <View style={styles.item}>
+    <Pressable
+      style={styles.item}
+      onPress={() => {
+        navigation.navigate('WebViewRecent', { url: url });
+      }}>
       <View style={styles.artisInfo}>
         <Image
           source={{
@@ -22,7 +29,7 @@ const RecentNewsItem = ({ newsData }) => {
         <Text style={styles.descText}>{newsData.desc}</Text>
         <Text style={styles.timeText}>{newsData.time}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

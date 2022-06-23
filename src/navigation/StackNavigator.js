@@ -6,6 +6,7 @@ import RecentScreen from '../screens/RecentScreen';
 import SearchScreen from '../screens/SearchScreen';
 import AboutTheAppScreen from '../screens/AboutTheAppScreen';
 import ArtistScreen from '../screens/ArtistScreen';
+import WebViewScreen from '../screens/WebViewScreen';
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,13 @@ const FollowingStackNavigator = () => {
           headerShown: true,
         }}
       />
+      <Stack.Screen
+        name="WebViewFollowing"
+        component={WebViewScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };
@@ -51,6 +59,13 @@ const RecentStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={HeaderStyle}>
       <Stack.Screen name="Recent" component={RecentScreen} />
+      <Stack.Screen
+        name="WebViewRecent"
+        component={WebViewScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };
@@ -68,6 +83,13 @@ const SearchStackNavigator = () => {
           headerBackTitleVisible: false,
           headerTransparent: true,
           headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name="WebViewSearch"
+        component={WebViewScreen}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
