@@ -1,24 +1,19 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Theme } from '../styles/theme/ThemeStyle';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import FollowingScreen from '../screens/FollowingScreen';
 import RecentScreen from '../screens/RecentScreen';
 import SearchScreen from '../screens/SearchScreen';
-import AboutTheAppScreen from '../screens/AboutTheAppScreen';
 import ArtistScreen from '../screens/ArtistScreen';
 import WebViewScreen from '../screens/WebViewScreen';
+import Text from 'react-native';
+import { Pressable } from 'react-native';
+import { LogoutMenu } from '../components/LogoutMenu';
 
 const Stack = createStackNavigator();
 
-// const MainStackNavigator = () => {
-//     return (
-//         <Stack.Navigator>
-//             <Stack.Screen name="Following" component={FollowingScreen} />
-//             <Stack.Screen name="Recent" component={RecentScreen} />
-//             <Stack.Screen name="Search" component={SearchScreen} />
-//         </Stack.Navigator>
-//     );
-// }
 const HeaderStyle = {
   headerShown: true,
   headerTitleAlign: 'center',
@@ -58,7 +53,13 @@ const FollowingStackNavigator = () => {
 const RecentStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={HeaderStyle}>
-      <Stack.Screen name="Recent" component={RecentScreen} />
+      <Stack.Screen
+        name="Recent"
+        component={RecentScreen}
+        options={{
+          headerRight: () => <LogoutMenu />,
+        }}
+      />
       <Stack.Screen
         name="WebViewRecent"
         component={WebViewScreen}
@@ -96,17 +97,4 @@ const SearchStackNavigator = () => {
   );
 };
 
-const AboutTheAppStackNavigator = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: true }}>
-      <Stack.Screen name="About the App" component={AboutTheAppScreen} />
-    </Stack.Navigator>
-  );
-};
-
-export {
-  FollowingStackNavigator,
-  RecentStackNavigator,
-  SearchStackNavigator,
-  AboutTheAppStackNavigator,
-};
+export { FollowingStackNavigator, RecentStackNavigator, SearchStackNavigator };

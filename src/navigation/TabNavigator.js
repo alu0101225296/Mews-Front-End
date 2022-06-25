@@ -26,16 +26,6 @@ const TabNavigation = () => {
         component={FollowingStackNavigator}
         options={{
           title: 'Following',
-          headerStyle: {
-            //backgroundColor: Theme.colors.purple,
-          },
-          // headerLeft: () => (
-          //     <Image
-          //         source={{ uri: 'https://shoonia.github.io/1x1/favicon.png' }}
-          //         style={{ width: 40, height: 40 }}
-          //     />
-          // ),
-
           tabBarLabel: 'Following',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
@@ -59,7 +49,7 @@ const TabNavigation = () => {
       />
 
       <Tab.Screen
-        name="SearchTab"
+        name="oo"
         component={SearchStackNavigator}
         options={{
           title: 'Search',

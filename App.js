@@ -9,13 +9,15 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { View, StyleSheet, StatusBar } from 'react-native';
 import { Theme } from './src/styles/theme/ThemeStyle';
+import { MenuProvider } from 'react-native-popup-menu';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 
 import TabNavigator from './src/navigation/TabNavigator';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 
-import AuthScreen from './src/auth/AuthScreen';
+import AuthScreen from './src/screens/AuthScreen';
+import RootNavigator from './src/navigation/RootNavigator';
 
 // const YourApp = () => {
 //   return (
@@ -34,14 +36,16 @@ import AuthScreen from './src/auth/AuthScreen';
 
 const YourApp = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor={Theme.colors.white}
-        translucent={true}
-      />
-      <AuthScreen />
-    </View>
+    <MenuProvider>
+      <View style={styles.container}>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor={Theme.colors.white}
+          translucent={true}
+        />
+        <RootNavigator />
+      </View>
+    </MenuProvider>
   );
 };
 

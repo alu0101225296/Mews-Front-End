@@ -1,14 +1,16 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import {
-  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { auth } from '../Firebase.js';
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from '../auth/Firebase.js';
 import { Theme } from '../styles/theme/ThemeStyle';
 import { StatusBar, Image } from 'react-native';
 
@@ -16,37 +18,24 @@ const AuthScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const navigation = useNavigation();
+  const handleRegister = () => {
+    console.log(typeof email);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Registered with:', user.email);
+      })
+      .catch(error => alert(error.message));
+  };
 
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged(user => {
-  //     if (user) {
-  //       navigation.replace('Home');
-  //     }
-  //   });
-
-  //   return unsubscribe;
-  // }, [navigation]);
-
-  // const handleSignUp = () => {
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then(userCredentials => {
-  //       const user = userCredentials.user;
-  //       console.log('Registered with:', user.email);
-  //     })
-  //     .catch(error => alert(error.message));
-  // };
-
-  // const handleLogin = () => {
-  //   auth
-  //     .signInWithEmailAndPassword(email, password)
-  //     .then(userCredentials => {
-  //       const user = userCredentials.user;
-  //       console.log('Logged in with:', user.email);
-  //     })
-  //     .catch(error => alert(error.message));
-  // };
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Logged in with:', user.email);
+      })
+      .catch(error => alert(error.message));
+  };
 
   return (
     <View style={styles.container} behavior="padding">
@@ -61,28 +50,28 @@ const AuthScreen = () => {
       />
       <View style={styles.content}>
         <View style={styles.inputContainer}>
-          <Text style={styles.title}>Welcome to the Mews</Text>
+          <Text style={styles.title}>Welcome to Mews</Text>
           <TextInput
             placeholder="Email"
+            placeholderTextColor={Theme.colors.gray}
             value={email}
-            // onChangeText={text => setEmail(text)}
+            onChangeText={text => setEmail(text)}
             style={styles.input}
           />
           <TextInput
             placeholder="Password"
+            placeholderTextColor={Theme.colors.gray}
             value={password}
-            // onChangeText={text => setPassword(text)}
+            onChangeText={text => setPassword(text)}
             style={styles.input}
             secureTextEntry
           />
           <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              onPress={console.log('handleLogin')}
-              style={styles.button}>
+            <TouchableOpacity onPress={handleLogin} style={styles.button}>
               <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              // onPress={handleSignUp}
+              onPress={handleRegister}
               style={[styles.button, { backgroundColor: Theme.colors.gray }]}>
               <Text style={styles.buttonOutlineText}>Register</Text>
             </TouchableOpacity>
@@ -120,6 +109,7 @@ const styles = StyleSheet.create({
     color: Theme.colors.white,
     marginBottom: 20,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   inputContainer: {
     flex: 1,

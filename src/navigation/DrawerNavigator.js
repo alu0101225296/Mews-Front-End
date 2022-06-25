@@ -1,24 +1,19 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import React from 'react';
+// import { createDrawerNavigator } from '@react-navigation/drawer';
+// import React from 'react';
 
-import {
-  FollowingStackNavigator,
-  RecentStackNavigator,
-  SearchStackNavigator,
-  AboutTheAppStackNavigator,
-} from './StackNavigator';
+// import AuthScreen from '../screens/AuthScreen';
 
-const Drawer = createDrawerNavigator();
+// const Drawer = createDrawerNavigator();
 
-function DrawerNavigator() {
-  return (
-    <Drawer.Navigator initialRouteName="Recent">
-      <Drawer.Screen
-        name="AboutTheApp"
-        component={AboutTheAppStackNavigator}
-        options={{ drawerLabel: 'About the App' }}
-      />
-    </Drawer.Navigator>
-  );
-}
-export default DrawerNavigator;
+// function DrawerNavigator() {
+//   return (
+//     <Drawer.Navigator initialRouteName="Recent">
+//       <Drawer.Screen
+//         name="AboutTheApp"
+//         component={AboutTheAppStackNavigator}
+//         options={{ drawerLabel: 'About the App' }}
+//       />
+//     </Drawer.Navigator>
+//   );
+// }
+// export default DrawerNavigator;
