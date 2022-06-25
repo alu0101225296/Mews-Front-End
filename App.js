@@ -15,7 +15,22 @@ import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './src/navigation/TabNavigator';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 
-import ArtistScreen from './src/screens/ArtistScreen';
+import AuthScreen from './src/auth/AuthScreen';
+
+// const YourApp = () => {
+//   return (
+//     <View style={styles.container}>
+//       <StatusBar
+//         barStyle="dark-content"
+//         backgroundColor={Theme.colors.white}
+//         translucent={true}
+//       />
+//       <NavigationContainer>
+//         <TabNavigator />
+//       </NavigationContainer>
+//     </View>
+//   );
+// };
 
 const YourApp = () => {
   return (
@@ -25,9 +40,7 @@ const YourApp = () => {
         backgroundColor={Theme.colors.white}
         translucent={true}
       />
-      <NavigationContainer>
-        <TabNavigator />
-      </NavigationContainer>
+      <AuthScreen />
     </View>
   );
 };
