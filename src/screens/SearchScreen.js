@@ -52,7 +52,7 @@ const SearchScreen = ({ navigation }) => {
 
   useEffect(() => {
     const source = axios.CancelToken.source();
-    const url = `${baseUrl}/api/artist`;
+    const url = `${baseUrl}/api/artist/all`;
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
