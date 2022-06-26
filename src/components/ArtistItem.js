@@ -9,20 +9,53 @@ import {
   Alert,
 } from 'react-native';
 import { Theme } from '../styles/theme/ThemeStyle';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { auth } from '../auth/Firebase';
 
-const ArtistItem = ({
-  artistData,
-  cancelFollowHandler,
-  pressArtistHandler,
-  isFollowing,
-}) => {
+const ArtistItem = ({ artistData, pressArtistHandler }) => {
+  const uid = auth.currentUser.uid;
+  const [following, setFollowing] = useState(false);
+  const baseUrl = 'https://mewsapp.me';
+
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}/api/user/subbed?uid=${uid}&artistId=${artistData.id}`)
+      .then(res => setFollowing(res.data.subscribed))
+      .catch(err => console.log(err));
+  }, [uid, artistData.id]);
+
+  const followArtist = () => {
+    axios
+      .put(`${baseUrl}/api/user/sub`, {
+        uid: uid,
+        subscription: artistData.id,
+      })
+      .then(res => {
+        setFollowing(true);
+        console.log('pressed follow');
+      });
+  };
+
+  const unfollowArtist = () => {
+    axios
+      .put(`${baseUrl}/api/user/unsub`, {
+        uid: uid,
+        subscription: artistData.id,
+      })
+      .then(res => {
+        setFollowing(false);
+        console.log('pressed unfollow');
+      });
+  };
+
   return (
     <Pressable onPress={() => pressArtistHandler(artistData)}>
       <View style={styles.item}>
         <Image source={{ uri: artistData.image }} style={styles.image} />
         <View style={styles.rightSide}>
           <Text style={styles.artistNameText}>{artistData.name}</Text>
-          {isFollowing ? (
+          {following ? (
             <Button
               title="Unfollow"
               color={Theme.colors.red}
@@ -32,7 +65,7 @@ const ArtistItem = ({
                   'Do you want to unfollow ' + artistData.name + '?',
                   [
                     { text: 'No' },
-                    { text: 'Yes', onPress: () => cancelFollowHandler },
+                    { text: 'Yes', onPress: () => unfollowArtist() },
                   ],
                 )
               }
@@ -41,7 +74,7 @@ const ArtistItem = ({
             <Button
               title="Follow"
               color={Theme.colors.red}
-              onPress={() => ''}
+              onPress={() => followArtist()}
             />
           )}
         </View>

@@ -41,21 +41,15 @@ const SearchScreen = ({ navigation }) => {
   };
 
   const renderArtistItem = ({ item }) => {
-    return (
-      <ArtistItem
-        artistData={item}
-        cancelFollowHandler={toggleModal}
-        pressArtistHandler={goToArtist}
-        isFollowing={item.follow}
-      />
-    );
+    return <ArtistItem artistData={item} pressArtistHandler={goToArtist} />;
   };
   const [searchText, setSearchText] = useState('');
 
+  const baseUrl = 'https://mewsapp.me';
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setErrorFlag] = useState(false);
-  const baseUrl = 'https://mewsapp.me';
+
   useEffect(() => {
     const source = axios.CancelToken.source();
     const url = `${baseUrl}/api/artist`;
