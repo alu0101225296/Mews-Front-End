@@ -19,11 +19,14 @@ import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
 import { useRef } from 'react';
+import { useState } from 'react';
 import NewsItem from '../components/NewsItem';
+import { useEffect } from 'react';
 
-import * as data from '../utils/news.json';
+// import * as data from '../utils/news.json';
 import { Theme } from '../styles/theme/ThemeStyle';
 import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
+import axios from 'axios';
 
 const MIN_HEIGHT = StatusBar.currentHeight + 50;
 const MAX_HEIGHT = 180;
@@ -31,7 +34,37 @@ const MAX_HEIGHT = 180;
 const ArtistScreen = ({ route }) => {
   const navTitleView = useRef(null);
   const artistData = route.params.artist;
-  const DATA = data[artistData.name]; // news data
+
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setErrorFlag] = useState(false);
+  const baseUrl = 'https://mewsapp.me';
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+    const url = `${baseUrl}/api/news?array=${artistData.id}`;
+    const fetchUsers = async () => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get(url, { cancelToken: source.token });
+        if (response.status === 200) {
+          setData(response.data);
+          setIsLoading(false);
+          return;
+        } else {
+          throw new Error('Failed to fetch artists');
+        }
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log('Data fetching cancelled');
+        } else {
+          setErrorFlag(true);
+          setIsLoading(false);
+        }
+      }
+    };
+    fetchUsers();
+    return () => source.cancel('Data fetching cancelled');
+  }, [artistData.id]);
 
   return (
     <View style={{ flex: 1, backgroundColor: Theme.colors.gray }}>
@@ -68,11 +101,8 @@ const ArtistScreen = ({ route }) => {
           style={styles.section}
           onBeginHidden={() => navTitleView.current.fadeInUp(200)}
           onDisplay={() => navTitleView.current.fadeOut(100)}>
-          {DATA.map(item => (
-            <NewsItem newsData={item} />
-          ))}
+          {data ? data.map(item => <NewsItem newsData={item} />) : null}
         </TriggeringView>
-        <View style={{ backgroundColor: Theme.colors.gray }}></View>
       </HeaderImageScrollView>
     </View>
   );

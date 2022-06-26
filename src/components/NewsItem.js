@@ -5,18 +5,18 @@ import { useNavigation } from '@react-navigation/native';
 
 const NewsItem = ({ newsData }) => {
   const navigation = useNavigation();
-  const url = newsData.url;
+  const url = newsData.sourceLink;
   return (
     <Pressable
       style={styles.item}
       onPress={() => {
-        navigation.navigate('WebViewFollowing', { url: url });
+        navigation.navigate('WebViewSearch', { url: url });
       }}>
       <View>
         <Text style={styles.titleText}>{newsData.title}</Text>
       </View>
-      <Text style={styles.descText}>{newsData.desc}</Text>
-      <Text style={styles.timeText}>{newsData.time}</Text>
+      <Text style={styles.descText}>{newsData.body}</Text>
+      <Text style={styles.timeText}>{Date(newsData.date)}</Text>
     </Pressable>
   );
 };

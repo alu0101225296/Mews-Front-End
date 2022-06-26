@@ -19,11 +19,12 @@ import { useNavigation } from '@react-navigation/native';
 import { useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
 import { useState } from 'react';
-import * as data from '../utils/artist.json';
+// import * as data from '../utils/artist.json';
 import ArtistItem from '../components/ArtistItem';
 import { Theme } from '../styles/theme/ThemeStyle';
 import { Button } from 'react-native-vector-icons/Feather';
 import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
+import axios from 'axios';
 
 const SearchScreen = ({ navigation }) => {
   const hideHeader = () => {
@@ -49,12 +50,41 @@ const SearchScreen = ({ navigation }) => {
       />
     );
   };
-
   const [searchText, setSearchText] = useState('');
-  const DATA = data.artistList;
 
-  let filteredData = !!searchText
-    ? DATA.filter(artist => {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setErrorFlag] = useState(false);
+  const baseUrl = 'https://mewsapp.me';
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+    const url = `${baseUrl}/api/artist`;
+    const fetchUsers = async () => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get(url, { cancelToken: source.token });
+        if (response.status === 200) {
+          setData(response.data);
+          setIsLoading(false);
+          return;
+        } else {
+          throw new Error('Failed to fetch artists');
+        }
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log('Data fetching cancelled');
+        } else {
+          setErrorFlag(true);
+          setIsLoading(false);
+        }
+      }
+    };
+    fetchUsers();
+    return () => source.cancel('Data fetching cancelled');
+  }, []);
+
+  let filteredData = searchText
+    ? data.filter(artist => {
         return artist.name.toLowerCase().includes(searchText.toLowerCase());
       })
     : [];
@@ -67,9 +97,6 @@ const SearchScreen = ({ navigation }) => {
         setSearchText={setSearchText}
         style={styles.SearchBar}
       />
-      {/* <Button onPress={() => hideHeader()}>
-                hola
-            </Button> */}
       <FlatList
         data={filteredData}
         renderItem={renderArtistItem}

@@ -9,9 +9,6 @@ import {
   Alert,
 } from 'react-native';
 import { Theme } from '../styles/theme/ThemeStyle';
-// import MaterialCommunityIcons, {
-//   Button,
-// } from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ArtistItem = ({
   artistData,
