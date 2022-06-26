@@ -50,7 +50,7 @@ const FollowingScreen = ({ navigation }) => {
 
   useEffect(() => {
     const source = axios.CancelToken.source();
-    const url = `${baseUrl}/api/artist/subbed?uid${uid}`;
+    const url = `${baseUrl}/api/artist/subbed?uid=${uid}`;
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
