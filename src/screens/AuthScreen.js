@@ -13,16 +13,26 @@ import {
 } from '../auth/Firebase.js';
 import { Theme } from '../styles/theme/ThemeStyle';
 import { StatusBar, Image } from 'react-native';
+import axios from 'axios';
 
 const AuthScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = () => {
-    console.log(typeof email);
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
+        const userId = user.uid;
+        const userJSON = {
+          uid: userId,
+          subscription: [],
+        };
+        axios
+          .post('https://mewsapp.me/api/user/add', userJSON)
+          .then(response =>
+            console.log('User created successfully', response.data),
+          );
         console.log('Registered with:', user.email);
       })
       .catch(error => alert(error.message));

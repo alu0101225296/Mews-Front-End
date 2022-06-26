@@ -52,7 +52,7 @@ const FollowingScreen = ({ navigation }) => {
 
   let filteredData = [];
   if (DATA.length > 0) {
-    filteredData = !!searchText
+    filteredData = searchText
       ? DATA.filter(artist => {
           return artist.name.toLowerCase().includes(searchText.toLowerCase());
         })
