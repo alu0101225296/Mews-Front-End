@@ -7,7 +7,7 @@
  */
 import 'react-native-gesture-handler';
 import React from 'react';
-import { View, StyleSheet, StatusBar } from 'react-native';
+import { View, StyleSheet, StatusBar, YellowBox } from 'react-native';
 import { Theme } from './src/styles/theme/ThemeStyle';
 import { MenuProvider } from 'react-native-popup-menu';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,21 +18,7 @@ import DrawerNavigator from './src/navigation/DrawerNavigator';
 
 import AuthScreen from './src/screens/AuthScreen';
 import RootNavigator from './src/navigation/RootNavigator';
-
-// const YourApp = () => {
-//   return (
-//     <View style={styles.container}>
-//       <StatusBar
-//         barStyle="dark-content"
-//         backgroundColor={Theme.colors.white}
-//         translucent={true}
-//       />
-//       <NavigationContainer>
-//         <TabNavigator />
-//       </NavigationContainer>
-//     </View>
-//   );
-// };
+console.disableYellowBox = true;
 
 const YourApp = () => {
   return (
