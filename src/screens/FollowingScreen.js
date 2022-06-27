@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { useState } from 'react';
 import {
   FlatList,
   Text,
@@ -15,6 +14,7 @@ import {
   View,
   Button,
   StatusBar,
+  RefreshControl,
 } from 'react-native';
 import { Theme } from '../styles/theme/ThemeStyle';
 
@@ -24,11 +24,10 @@ import UnfollowPopUp from '../components/UnfollowPopUp';
 import SearchBar from '../components/SearchBar';
 import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { auth } from '../auth/Firebase';
 
 const FollowingScreen = ({ navigation }) => {
-  const uid = auth.currentUser.uid;
   const [searchText, setSearchText] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
@@ -43,37 +42,31 @@ const FollowingScreen = ({ navigation }) => {
     return <ArtistItem artistData={item} pressArtistHandler={goToArtist} />;
   };
 
+  const uid = auth.currentUser.uid;
   const baseUrl = 'https://mewsapp.me';
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setErrorFlag] = useState(false);
-
-  useEffect(() => {
-    const source = axios.CancelToken.source();
+  const fetchFollowingArtists = useCallback(async () => {
     const url = `${baseUrl}/api/artist/subbed?uid=${uid}`;
-    const fetchUsers = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get(url, { cancelToken: source.token });
-        if (response.status === 200) {
-          setData(response.data);
-          setIsLoading(false);
-          return;
-        } else {
-          throw new Error('Failed to fetch artists');
-        }
-      } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log('Data fetching cancelled');
-        } else {
-          setErrorFlag(true);
-          setIsLoading(false);
-        }
+    try {
+      const response = await axios.get(url);
+      if (response.status === 200) {
+        setData(response.data);
       }
-    };
-    fetchUsers();
-    return () => source.cancel('Data fetching cancelled');
+    } catch (error) {
+      console.log(error);
+    }
   }, [uid]);
+  useEffect(() => {
+    fetchFollowingArtists();
+  }, [fetchFollowingArtists]);
+
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchFollowingArtists().then(() => {
+      setRefreshing(false);
+    });
+  };
 
   let filteredData = [];
   if (data.length > 0) {
@@ -97,6 +90,8 @@ const FollowingScreen = ({ navigation }) => {
             data={filteredData}
             renderItem={renderArtistItem}
             keyExtractor={item => item.name}
+            refreshing={refreshing}
+            onRefresh={onRefresh}
           />
         </>
       ) : (

@@ -14,11 +14,11 @@ import {
   View,
   StyleSheet,
   StatusBar,
+  RefreshControl,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
-import { useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 // import * as data from '../utils/artist.json';
 import ArtistItem from '../components/ArtistItem';
 import { Theme } from '../styles/theme/ThemeStyle';
@@ -46,36 +46,29 @@ const SearchScreen = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
 
   const baseUrl = 'https://mewsapp.me';
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setErrorFlag] = useState(false);
-
-  useEffect(() => {
-    const source = axios.CancelToken.source();
+  const [data, setData] = useState([]);
+  const fetchArtists = useCallback(async () => {
     const url = `${baseUrl}/api/artist/all`;
-    const fetchUsers = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get(url, { cancelToken: source.token });
-        if (response.status === 200) {
-          setData(response.data);
-          setIsLoading(false);
-          return;
-        } else {
-          throw new Error('Failed to fetch artists');
-        }
-      } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log('Data fetching cancelled');
-        } else {
-          setErrorFlag(true);
-          setIsLoading(false);
-        }
+    try {
+      const response = await axios.get(url);
+      if (response.status === 200) {
+        setData(response.data);
       }
-    };
-    fetchUsers();
-    return () => source.cancel('Data fetching cancelled');
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
+  useEffect(() => {
+    fetchArtists();
+  }, [fetchArtists]);
+
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchArtists().then(() => {
+      setRefreshing(false);
+    });
+  };
 
   let filteredData = searchText
     ? data.filter(artist => {
@@ -95,6 +88,8 @@ const SearchScreen = ({ navigation }) => {
         data={filteredData}
         renderItem={renderArtistItem}
         keyExtractor={item => item.name}
+        refreshing={refreshing}
+        onRefresh={onRefresh}
       />
     </View>
   );

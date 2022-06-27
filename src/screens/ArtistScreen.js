@@ -19,9 +19,8 @@ import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
 import { useRef } from 'react';
-import { useState } from 'react';
 import NewsItem from '../components/NewsItem';
-import { useEffect } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 
 // import * as data from '../utils/news.json';
 import { Theme } from '../styles/theme/ThemeStyle';
@@ -35,36 +34,22 @@ const ArtistScreen = ({ route }) => {
   const navTitleView = useRef(null);
   const artistData = route.params.artist;
 
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setErrorFlag] = useState(false);
   const baseUrl = 'https://mewsapp.me';
-  useEffect(() => {
-    const source = axios.CancelToken.source();
+  const [data, setData] = useState([]);
+  const fetchNews = useCallback(async () => {
     const url = `${baseUrl}/api/news?array=${artistData.id}`;
-    const fetchUsers = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get(url, { cancelToken: source.token });
-        if (response.status === 200) {
-          setData(response.data);
-          setIsLoading(false);
-          return;
-        } else {
-          throw new Error('Failed to fetch artists');
-        }
-      } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log('Data fetching cancelled');
-        } else {
-          setErrorFlag(true);
-          setIsLoading(false);
-        }
+    try {
+      const response = await axios.get(url);
+      if (response.status === 200) {
+        setData(response.data);
       }
-    };
-    fetchUsers();
-    return () => source.cancel('Data fetching cancelled');
+    } catch (error) {
+      console.log(error);
+    }
   }, [artistData.id]);
+  useEffect(() => {
+    fetchNews();
+  }, [fetchNews]);
 
   return (
     <View style={{ flex: 1, backgroundColor: Theme.colors.gray }}>

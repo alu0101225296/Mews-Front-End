@@ -15,7 +15,7 @@ const NewsItem = ({ newsData }) => {
       <Text style={styles.titleText}>{newsData.title}</Text>
       <Text style={styles.descText}>{newsData.body}</Text>
       <Text style={styles.timeText}>
-        {new Date(newsData.date._seconds * 1000).toString()}
+        {new Date(newsData.date._seconds * 1000).toLocaleString()}
       </Text>
     </Pressable>
   );
