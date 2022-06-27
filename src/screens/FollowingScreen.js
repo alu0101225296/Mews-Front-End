@@ -95,7 +95,9 @@ const FollowingScreen = ({ navigation }) => {
           />
         </>
       ) : (
-        <Text style={styles.emptyList}>No artist following</Text>
+        <Text style={styles.emptyList} onPress={onRefresh}>
+          No artist following
+        </Text>
       )}
       <UnfollowPopUp
         isModalVisible={isModalVisible}
