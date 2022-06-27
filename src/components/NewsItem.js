@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     borderBottomColor: Theme.colors.gray,
     borderBottomWidth: 1,
-    margin: Theme.sizes.margin.medium,
+    margin: Theme.sizes.margin.small,
   },
   itemTop: {
     flexDirection: 'row',
