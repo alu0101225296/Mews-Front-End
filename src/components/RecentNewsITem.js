@@ -6,28 +6,29 @@ import { useNavigation } from '@react-navigation/native';
 // TODO : añadir newsItem y encima una cabecera en vez de crearlo todo entero aqui
 const RecentNewsItem = ({ newsData }) => {
   const navigation = useNavigation();
-  const url = newsData.url;
   return (
     <Pressable
       style={styles.item}
       onPress={() => {
-        navigation.navigate('WebViewRecent', { url: url });
+        navigation.navigate('WebViewRecent', { url: newsData.sourceLink });
       }}>
       <View style={styles.artisInfo}>
         <Image
           source={{
-            uri: 'https://images2.listindiario.com/imagen/2020/05/16/618/617747/680x460/202005161424071/safaera-de-bad-bunny-vuelve-a-estar-disponible-en-spotify.jpeg',
+            uri: newsData.artistImage,
           }}
           style={styles.image}
         />
-        <Text style={styles.artistName}>Bad Bunny</Text>
+        <Text style={styles.artistName}>{newsData.artistName}</Text>
       </View>
       <View style={styles.news}>
         <View>
           <Text style={styles.titleText}>{newsData.title}</Text>
         </View>
-        <Text style={styles.descText}>{newsData.desc}</Text>
-        <Text style={styles.timeText}>{newsData.time}</Text>
+        <Text style={styles.descText}>{newsData.body}</Text>
+        <Text style={styles.timeText}>
+          {new Date(newsData.date._seconds * 1000).toString()}
+        </Text>
       </View>
     </Pressable>
   );
@@ -44,11 +45,11 @@ const styles = StyleSheet.create({
     marginLeft: Theme.sizes.margin.small,
   },
   news: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     borderBottomColor: Theme.colors.gray,
     borderBottomWidth: 1,
-    marginLeft: Theme.sizes.margin.small,
-    marginRight: Theme.sizes.margin.small,
+    marginLeft: Theme.sizes.margin.medium,
+    marginRight: Theme.sizes.margin.medium,
   },
   artisInfo: {
     flexDirection: 'row',

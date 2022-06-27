@@ -12,11 +12,11 @@ const NewsItem = ({ newsData }) => {
       onPress={() => {
         navigation.navigate('WebViewSearch', { url: url });
       }}>
-      <View>
-        <Text style={styles.titleText}>{newsData.title}</Text>
-      </View>
+      <Text style={styles.titleText}>{newsData.title}</Text>
       <Text style={styles.descText}>{newsData.body}</Text>
-      <Text style={styles.timeText}>{Date(newsData.date)}</Text>
+      <Text style={styles.timeText}>
+        {new Date(newsData.date._seconds * 1000).toString()}
+      </Text>
     </Pressable>
   );
 };
@@ -24,10 +24,10 @@ const NewsItem = ({ newsData }) => {
 const styles = StyleSheet.create({
   item: {
     backgroundColor: Theme.colors.white,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     borderBottomColor: Theme.colors.gray,
     borderBottomWidth: 1,
-    margin: Theme.sizes.margin.small,
+    margin: Theme.sizes.margin.medium,
   },
   itemTop: {
     flexDirection: 'row',
