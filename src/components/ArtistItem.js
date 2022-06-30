@@ -54,7 +54,12 @@ const ArtistItem = ({ artistData, pressArtistHandler }) => {
       <View style={styles.item}>
         <Image source={{ uri: artistData.image }} style={styles.image} />
         <View style={styles.rightSide}>
-          <Text style={styles.artistNameText}>{artistData.name}</Text>
+          <View>
+            <Text style={styles.artistNameText}>{artistData.name}</Text>
+            <Text style={styles.artistFollowers}>
+              {artistData.followers} followers
+            </Text>
+          </View>
           {following ? (
             <Button
               title="Unfollow"
@@ -110,6 +115,10 @@ const styles = StyleSheet.create({
     fontSize: Theme.fonts.size.medium,
     fontWeight: 'bold',
     color: Theme.colors.black,
+  },
+  artistFollowers: {
+    fontSize: Theme.fonts.size.small,
+    color: Theme.colors.grayDark,
   },
 });
 

@@ -15,11 +15,11 @@ const RecentNewsItem = ({ newsData }) => {
       <View style={styles.artisInfo}>
         <Image
           source={{
-            uri: newsData.artistImage,
+            uri: newsData.artist.image,
           }}
           style={styles.image}
         />
-        <Text style={styles.artistName}>{newsData.artistName}</Text>
+        <Text style={styles.artistName}>{newsData.artist.name}</Text>
       </View>
       <View style={styles.news}>
         <View>

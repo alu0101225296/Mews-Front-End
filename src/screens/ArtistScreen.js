@@ -75,6 +75,9 @@ const ArtistScreen = ({ route }) => {
         renderForeground={() => (
           <View style={styles.titleContainer}>
             <Text style={styles.imageTitle}>{artistData.name}</Text>
+            <Text style={styles.imageSubtitle}>
+              {artistData.followers} followers
+            </Text>
           </View>
         )}
         renderFixedForeground={() => (
@@ -161,6 +164,10 @@ const styles = StyleSheet.create({
   },
   sectionLarge: {
     height: 600,
+  },
+  imageSubtitle: {
+    color: 'white',
+    fontSize: 13,
   },
 });
 
