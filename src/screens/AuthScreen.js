@@ -29,7 +29,7 @@ const AuthScreen = () => {
           subscription: [],
         };
         axios
-          .post('https://mewsapp.me/api/user/add', userJSON)
+          .post(`https://mewsapp.me/api/user/${userId}`, userJSON)
           .then(response =>
             console.log('User created successfully', response.data),
           );

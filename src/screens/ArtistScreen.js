@@ -14,6 +14,7 @@ import {
   StatusBar,
   StyleSheet,
   Dimensions,
+  FlatList,
 } from 'react-native';
 import HeaderImageScrollView, {
   TriggeringView,
@@ -36,20 +37,31 @@ const ArtistScreen = ({ route }) => {
 
   const baseUrl = 'https://mewsapp.me';
   const [data, setData] = useState([]);
+  const dataLoadLimit = 100;
+  const [startAfter, setStartAfter] = useState('');
   const fetchNews = useCallback(async () => {
-    const url = `${baseUrl}/api/news?array=${artistData.id}`;
+    let url = `${baseUrl}/api/news/${artistData.id}?limit=${dataLoadLimit}`;
+    if (startAfter) {
+      url += `&startAfter=${startAfter}`;
+    }
     try {
       const response = await axios.get(url);
       if (response.status === 200) {
-        setData(response.data);
+        setData(response.data.news);
+        setStartAfter(response.data.startAfter);
+        console.log('loaded news');
       }
     } catch (error) {
       console.log(error);
     }
-  }, [artistData.id]);
+  }, [artistData.id, dataLoadLimit, startAfter]);
   useEffect(() => {
     fetchNews();
   }, [fetchNews]);
+
+  const renderNewsItem = ({ item }) => {
+    return <NewsItem newsData={item} />;
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: Theme.colors.gray }}>
@@ -89,7 +101,11 @@ const ArtistScreen = ({ route }) => {
           style={styles.section}
           onBeginHidden={() => navTitleView.current.fadeInUp(200)}
           onDisplay={() => navTitleView.current.fadeOut(100)}>
-          {data ? data.map(item => <NewsItem newsData={item} />) : null}
+          {data
+            ? data.map(item => {
+                return <NewsItem newsData={item} />;
+              })
+            : null}
         </TriggeringView>
       </HeaderImageScrollView>
     </View>

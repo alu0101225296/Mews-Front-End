@@ -32,7 +32,7 @@ const RecentScreen = () => {
   const baseUrl = 'https://mewsapp.me';
   const [data, setData] = useState([]);
   const fetchRecentNews = useCallback(async () => {
-    const url = `${baseUrl}/api/news/recent?uid=${uid}`;
+    const url = `${baseUrl}/api/user/${uid}/news`;
     try {
       const response = await axios.get(url);
       if (response.status === 200) {

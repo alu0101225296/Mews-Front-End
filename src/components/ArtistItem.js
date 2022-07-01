@@ -20,29 +20,21 @@ const ArtistItem = ({ artistData, pressArtistHandler }) => {
 
   useEffect(() => {
     axios
-      .get(`${baseUrl}/api/user/subbed?uid=${uid}&artistId=${artistData.id}`)
+      .get(`${baseUrl}/api/user/${uid}/subs/${artistData.id}`)
       .then(res => setFollowing(res.data.subscribed))
       .catch(err => console.log(err));
   }, [uid, artistData.id]);
 
   const followArtist = () => {
-    axios
-      .put(`${baseUrl}/api/user/sub`, {
-        uid: uid,
-        subscription: artistData.id,
-      })
-      .then(res => {
-        setFollowing(true);
-        console.log('pressed follow');
-      });
+    axios.put(`${baseUrl}/api/user/${uid}/subs/${artistData.id}`).then(res => {
+      setFollowing(true);
+      console.log('pressed follow');
+    });
   };
 
   const unfollowArtist = () => {
     axios
-      .put(`${baseUrl}/api/user/unsub`, {
-        uid: uid,
-        subscription: artistData.id,
-      })
+      .delete(`${baseUrl}/api/user/${uid}/subs/${artistData.id}`)
       .then(res => {
         setFollowing(false);
         console.log('pressed unfollow');

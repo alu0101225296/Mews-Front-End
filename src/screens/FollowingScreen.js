@@ -46,7 +46,7 @@ const FollowingScreen = ({ navigation }) => {
   const baseUrl = 'https://mewsapp.me';
   const [data, setData] = useState([]);
   const fetchFollowingArtists = useCallback(async () => {
-    const url = `${baseUrl}/api/artist/subbed?uid=${uid}`;
+    const url = `${baseUrl}/api/user/${uid}/subs`;
     try {
       const response = await axios.get(url);
       if (response.status === 200) {

@@ -48,7 +48,7 @@ const SearchScreen = ({ navigation }) => {
   const baseUrl = 'https://mewsapp.me';
   const [data, setData] = useState([]);
   const fetchArtists = useCallback(async () => {
-    const url = `${baseUrl}/api/artist/all`;
+    const url = `${baseUrl}/api/artist`;
     try {
       const response = await axios.get(url);
       if (response.status === 200) {
